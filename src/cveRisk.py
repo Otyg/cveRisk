@@ -6,9 +6,6 @@ from cveTef import TEFCalculator
 if __name__ == "__main__":
     calculator = TEFCalculator()
     
-    # Load data once
-    calculator.load_data()
-    
     # Example CVEs
     test_cves = [
         "CVE-2026-87995",

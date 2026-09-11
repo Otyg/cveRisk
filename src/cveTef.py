@@ -17,6 +17,7 @@ class TEFCalculator:
         self.epss_csv_url = "https://epss.empiricalsecurity.com/epss_scores-current.csv.gz"
         self.cisa_kev_data = None
         self.epss_data = None  # Dict mapping CVE -> {'epss': float, 'percentile': float}
+        self.load_data()
     
     def fetch_epss_scores(self) -> Dict[str, Dict[str, float]]:
         """
