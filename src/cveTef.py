@@ -4,6 +4,7 @@ import csv
 import io
 import math
 from typing import Dict, Optional, Tuple
+from otyg_risk_base.montecarlo import MonteCarloRange, MonteCarloSimulation
 
 
 EPSS_WINDOW_DAYS = 30
@@ -206,11 +207,11 @@ class TEFCalculator:
             
             # Max: potential if exploited in future
             max_tef = min(0.9, epss_annual + 0.15)
-        
+        range = MonteCarloRange(min=min_tef, max=max_tef, probable=mode)
         result = {
-            'min': round(min_tef, 3),
-            'max': round(max_tef, 3),
-            'mode': round(mode, 3),
+            'min': round(range.min, 3),
+            'max': round(range.max, 3),
+            'mode': round(range.probable, 3),
             'epss': round(epss_score, 6),
             'epss_annual': round(epss_annual, 6),
             'epss_horizon_days': EPSS_WINDOW_DAYS,
